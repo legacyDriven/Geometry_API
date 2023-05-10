@@ -1,0 +1,35 @@
+spring:
+  profiles: "dev"
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        id:
+          new_generator_mappings: true
+    hibernate:
+      ddl-auto: create-drop
+      show_sql: true
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydatabase
+    username: myusername
+    password: mypassword
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        id:
+          new_generator_mappings: false
+    hibernate:
+      ddl-auto: update
+      show_sql: true
+
+

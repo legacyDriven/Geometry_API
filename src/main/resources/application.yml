@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - classpath:properties/persistence.yml
+      - classpath:properties/openApi.yml
+      - classpath:properties/security.yml
+
+
