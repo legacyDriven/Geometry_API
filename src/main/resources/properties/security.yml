@@ -1,0 +1,11 @@
+spring:
+  security:
+    jwt:
+      secret: "${my.jwt.secret}"
+      expiration-time: 86400000
+
+my:
+  jwt:
+    secret: "3F4528482B4D6251655368566D597133743677397A24432646294A404E635266"
+
+

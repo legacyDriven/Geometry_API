@@ -1,11 +1,14 @@
 package com.eugeniusz.geometry_api.api;
 
-import com.eugeniusz.geometry_api.dto.ShapeDTO;
+import com.eugeniusz.geometry_api.dto.ShapeCreateRequest;
+import com.eugeniusz.geometry_api.factory.ShapeFactory;
+import com.eugeniusz.geometry_api.model.Shape;
 import com.eugeniusz.geometry_api.service.ShapeService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 /*
@@ -27,15 +30,19 @@ data stworzenia od, do
 kto stworzyl,
 po parametrach figur, od - do
  */
-@RestController("api/v1/shapes")
+@RestController("/api/v1/shapes")
 @RequiredArgsConstructor
+@Slf4j
 public class ShapeEndpoint {
 
     private final ShapeService shapeService;
 
-    @Operation(summary = "Retrieve shape by id")
-    @GetMapping
-    ShapeDTO getShapeById(Long id) {
-        return shapeService.getShapeById(id);
+    @Operation(summary = "Persist shape in database")
+    @PostMapping
+    public ResponseEntity<Shape> createShape(@RequestBody ShapeCreateRequest request) {
+        Shape shape = ShapeFactory.createShape(request);
+        Shape savedShape = shapeService.save(shape);
+        return ResponseEntity.ok(savedShape);
     }
+
 }
