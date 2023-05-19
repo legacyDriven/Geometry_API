@@ -1,26 +1,50 @@
 package com.eugeniusz.geometry_api.model;
 
+import com.eugeniusz.geometry_api.model.shared.Shape;
+import com.eugeniusz.geometry_api.model.shared.ShapeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
+@Entity
 @Getter
 @Setter
-@Builder
-@RequiredArgsConstructor
 @NoArgsConstructor
-@Entity
+@SuperBuilder
+@DiscriminatorValue("CIRCLE")
+@EqualsAndHashCode(callSuper = true)
 public class Rectangle extends Shape {
-    BigDecimal length;
-    BigDecimal width;
+    @Column(nullable = false)
+    private BigDecimal length;
 
-    public Rectangle(ShapeType type, BigDecimal length, BigDecimal width) {
-        super.setType(type);
+    @Column(nullable = false)
+    private BigDecimal width;
+
+    public Rectangle(BigDecimal length, BigDecimal width) {
+        super.setType(ShapeType.RECTANGLE);
         this.length = length;
         this.width = width;
+        updateAreaAndPerimeter();
+    }
+
+    public void setLength(BigDecimal length) {
+        this.length = length;
+        updateAreaAndPerimeter();
+    }
+
+    public void setWidth(BigDecimal width) {
+        this.width = width;
+        updateAreaAndPerimeter();
+    }
+
+    private void updateAreaAndPerimeter() {
         super.setArea(calculateArea());
         super.setPerimeter(calculatePerimeter());
     }
@@ -33,19 +57,5 @@ public class Rectangle extends Shape {
     @Override
     public BigDecimal calculatePerimeter() {
         return length.add(width).multiply(BigDecimal.valueOf(2));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Rectangle rectangle = (Rectangle) o;
-        if (getId() != null && !Objects.equals(getId(), rectangle.getId())) return false;
-        return length != null && length.equals(rectangle.length) && width != null && width.equals(rectangle.width);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), length, width);
     }
 }

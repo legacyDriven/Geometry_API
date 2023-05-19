@@ -1,49 +1,61 @@
 package com.eugeniusz.geometry_api.model;
 
+import com.eugeniusz.geometry_api.model.shared.Shape;
+import com.eugeniusz.geometry_api.model.shared.ShapeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
+
+@Entity
 @Getter
 @Setter
-@Builder
-@RequiredArgsConstructor
 @NoArgsConstructor
-@Entity
+@SuperBuilder
+@DiscriminatorValue("SQUARE")
+@EqualsAndHashCode(callSuper = true)
 public class Square extends Shape {
-    BigDecimal side;
 
-    public Square(ShapeType type, BigDecimal side) {
-        super.setType(type);
-        this.side = side;
+    @Column(nullable = false)
+    private BigDecimal sideLength;
+
+    public Square(BigDecimal side) {
+        super.setType(ShapeType.SQUARE);
+        this.sideLength = side;
+        updateAreaAndPerimeter();
+    }
+
+    public void setSideLength(BigDecimal sideLength) {
+        this.sideLength = sideLength;
+        updateAreaAndPerimeter();
+    }
+
+    private void updateAreaAndPerimeter() {
         super.setArea(calculateArea());
         super.setPerimeter(calculatePerimeter());
     }
 
     @Override
     public BigDecimal calculateArea() {
-        return side.pow(2);
+        return sideLength.pow(2);
     }
 
     @Override
     public BigDecimal calculatePerimeter() {
-        return side.multiply(BigDecimal.valueOf(4));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Square square = (Square) o;
-        if (getId() != null && !Objects.equals(getId(), square.getId())) return false;
-        return side != null && side.equals(square.side);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), side);
+        return sideLength.multiply(BigDecimal.valueOf(4));
     }
 }
+
+
+
+
+
+
+
