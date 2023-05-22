@@ -1,4 +1,4 @@
-package com.eugeniusz.geometry_api.model.shared;
+package com.eugeniusz.geometry_api.model.shape;
 
 public enum ShapeType {
     SQUARE,

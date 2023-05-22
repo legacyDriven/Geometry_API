@@ -2,13 +2,17 @@ package com.eugeniusz.geometry_api.api;
 
 import com.eugeniusz.geometry_api.dto.ShapeCreateRequest;
 import com.eugeniusz.geometry_api.factory.ShapeFactory;
-import com.eugeniusz.geometry_api.model.shared.Shape;
+import com.eugeniusz.geometry_api.model.shape.Shape;
+import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import com.eugeniusz.geometry_api.service.ShapeService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.*;
 
 
 /*
@@ -37,12 +41,26 @@ public class ShapeEndpoint {
 
     private final ShapeService shapeService;
 
-//    @Operation(summary = "Persist shape in database")
-//    @PostMapping
-//    public ResponseEntity<Shape> createShape(@RequestBody ShapeCreateRequest request) {
-//        Shape shape = ShapeFactory.createShape(request);
-//        Shape savedShape = shapeService.save(shape);
-//        return ResponseEntity.ok(savedShape);
-//    }
+    @Operation(summary = "Get all shapes from database by criteria")
+    @GetMapping
+    @ResponseStatus(PARTIAL_CONTENT)
+    Page<Shape> getAll(@RequestBody ShapePageRequest request) {
+        return shapeService.getAllBy(request);
+    }
+
+    @Operation(summary = "Persist shape in database")
+    @PostMapping
+    @ResponseStatus(CREATED)
+    Shape createShape(@RequestBody ShapeCreateRequest request) {
+        Shape shape = ShapeFactory.createShape(request);
+        return shapeService.save(shape);
+    }
+
+    @Operation(summary = "Delete shape from database by id")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(NO_CONTENT)
+    void deleteShape(@PathVariable Long id) {
+        shapeService.deleteById(id);
+    }
 
 }

@@ -1,19 +1,14 @@
 package com.eugeniusz.geometry_api.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+
 import java.math.BigDecimal;
 
+@Getter
 public class CircleCreateRequest extends ShapeCreateRequest {
 
+    @NotEmpty
     private BigDecimal radius;
 
-    public CircleCreateRequest() {
-    }
-
-    public CircleCreateRequest(BigDecimal radius) {
-        this.radius = radius;
-    }
-
-    public BigDecimal getRadius() {
-        return radius;
-    }
 }

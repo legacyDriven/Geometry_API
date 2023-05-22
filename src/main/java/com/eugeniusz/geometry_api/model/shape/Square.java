@@ -1,7 +1,5 @@
-package com.eugeniusz.geometry_api.model;
+package com.eugeniusz.geometry_api.model.shape;
 
-import com.eugeniusz.geometry_api.model.shared.Shape;
-import com.eugeniusz.geometry_api.model.shared.ShapeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -13,34 +11,26 @@ import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-@DiscriminatorValue("CIRCLE")
 @EqualsAndHashCode(callSuper = true)
-public class Rectangle extends Shape {
-    @Column(nullable = false)
-    private BigDecimal length;
+public class Square extends Shape {
 
     @Column(nullable = false)
-    private BigDecimal width;
+    private BigDecimal sideLength;
 
-    public Rectangle(BigDecimal length, BigDecimal width) {
-        super.setType(ShapeType.RECTANGLE);
-        this.length = length;
-        this.width = width;
+    public Square(BigDecimal side) {
+        super.setType(ShapeType.SQUARE);
+        this.sideLength = side;
         updateAreaAndPerimeter();
     }
 
-    public void setLength(BigDecimal length) {
-        this.length = length;
-        updateAreaAndPerimeter();
-    }
-
-    public void setWidth(BigDecimal width) {
-        this.width = width;
+    public void setSideLength(BigDecimal sideLength) {
+        this.sideLength = sideLength;
         updateAreaAndPerimeter();
     }
 
@@ -51,11 +41,18 @@ public class Rectangle extends Shape {
 
     @Override
     public BigDecimal calculateArea() {
-        return length.multiply(width);
+        return sideLength.pow(2);
     }
 
     @Override
     public BigDecimal calculatePerimeter() {
-        return length.add(width).multiply(BigDecimal.valueOf(2));
+        return sideLength.multiply(BigDecimal.valueOf(4));
     }
 }
+
+
+
+
+
+
+

@@ -1,6 +1,5 @@
-package com.eugeniusz.geometry_api.model.shared;
+package com.eugeniusz.geometry_api.model.shape;
 
-import com.eugeniusz.geometry_api.model.shared.ShapeType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,17 +13,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
 @SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor
-//@RequiredArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "shape_type")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EntityListeners(AuditingEntityListener.class)
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Shape {
 
     @Id

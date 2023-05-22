@@ -1,10 +1,9 @@
 package com.eugeniusz.geometry_api.repository;
 
-import com.eugeniusz.geometry_api.model.shape.Shape;
+import com.eugeniusz.geometry_api.model.shape.Square;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShapeRepository extends JpaRepository<Shape, Long> {
-
+public interface SquareRepository extends JpaRepository<Square, Long> {
 }

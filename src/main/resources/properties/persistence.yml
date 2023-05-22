@@ -26,7 +26,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile: prod
+      on-profile: stage
   datasource:
     url: jdbc:postgresql://localhost:5432/geometry
     username: admin
