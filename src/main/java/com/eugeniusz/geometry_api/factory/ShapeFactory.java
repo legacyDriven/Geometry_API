@@ -1,9 +1,9 @@
 package com.eugeniusz.geometry_api.factory;
 
-import com.eugeniusz.geometry_api.dto.CircleCreateRequest;
-import com.eugeniusz.geometry_api.dto.RectangleCreateRequest;
-import com.eugeniusz.geometry_api.dto.ShapeCreateRequest;
-import com.eugeniusz.geometry_api.dto.SquareCreateRequest;
+import com.eugeniusz.geometry_api.dto.post.CircleCreateRequest;
+import com.eugeniusz.geometry_api.dto.post.RectangleCreateRequest;
+import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
+import com.eugeniusz.geometry_api.dto.post.SquareCreateRequest;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 
 import java.util.HashMap;

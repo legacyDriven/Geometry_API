@@ -2,8 +2,7 @@ package com.eugeniusz.geometry_api.service;
 
 import com.eugeniusz.geometry_api.api.ShapePageRequest;
 import com.eugeniusz.geometry_api.api.exceptions.ShapeNotFoundException;
-import com.eugeniusz.geometry_api.dto.ShapeCreateRequest;
-import com.eugeniusz.geometry_api.factory.ShapeCreator;
+import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
 import com.eugeniusz.geometry_api.factory.ShapeFactory;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;

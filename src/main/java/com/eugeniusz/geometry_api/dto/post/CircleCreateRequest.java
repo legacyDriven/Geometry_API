@@ -1,6 +1,8 @@
-package com.eugeniusz.geometry_api.dto;
+package com.eugeniusz.geometry_api.dto.post;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class CircleCreateRequest extends ShapeCreateRequest {
 
-    @NotEmpty
+    @NotNull
+    @Positive
     private BigDecimal radius;
 
 }

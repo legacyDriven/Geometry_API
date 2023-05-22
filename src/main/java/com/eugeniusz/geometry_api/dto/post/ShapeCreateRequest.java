@@ -1,4 +1,4 @@
-package com.eugeniusz.geometry_api.dto;
+package com.eugeniusz.geometry_api.dto.post;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

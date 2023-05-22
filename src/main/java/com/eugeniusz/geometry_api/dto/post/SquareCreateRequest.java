@@ -1,6 +1,9 @@
-package com.eugeniusz.geometry_api.dto;
+package com.eugeniusz.geometry_api.dto.post;
 
+import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +15,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class SquareCreateRequest extends ShapeCreateRequest {
 
-    @NotEmpty
+    @NotNull
+    @Positive
     BigDecimal side;
 
 }
