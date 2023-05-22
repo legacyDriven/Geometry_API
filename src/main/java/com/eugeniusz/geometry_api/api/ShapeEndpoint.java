@@ -6,6 +6,8 @@ import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import com.eugeniusz.geometry_api.service.ShapeService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -34,7 +36,8 @@ data stworzenia od, do
 kto stworzyl,
 po parametrach figur, od - do
  */
-@RestController("/api/v1/shapes")
+@RestController
+@RequestMapping("/api/v1/shapes")
 @RequiredArgsConstructor
 @Slf4j
 public class ShapeEndpoint {
@@ -52,8 +55,9 @@ public class ShapeEndpoint {
     @PostMapping
     @ResponseStatus(CREATED)
     Shape createShape(@RequestBody ShapeCreateRequest request) {
+        System.out.println("in post method");
         Shape shape = ShapeFactory.createShape(request);
-        return shapeService.save(shape);
+        return shapeService.save(request);
     }
 
     @Operation(summary = "Delete shape from database by id")

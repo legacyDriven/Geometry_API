@@ -1,7 +1,6 @@
 package com.eugeniusz.geometry_api.model.shape;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

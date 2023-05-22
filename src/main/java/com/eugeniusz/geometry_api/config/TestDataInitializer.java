@@ -2,7 +2,6 @@ package com.eugeniusz.geometry_api.config;
 
 import com.eugeniusz.geometry_api.model.shape.Circle;
 import com.eugeniusz.geometry_api.model.shape.Rectangle;
-import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.model.shape.Square;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import com.github.javafaker.Faker;
@@ -15,7 +14,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Random;
 
-@Profile("dev")
+@Profile("!dev")
 @Configuration
 public class TestDataInitializer implements CommandLineRunner {
 
@@ -33,17 +32,17 @@ public class TestDataInitializer implements CommandLineRunner {
         Faker faker = new Faker();
         System.out.println("faker on");
         for (int i = 0; i < 10; i++) {
-            Circle circle = new Circle(generateRandomBigDecimal(2, 10));
-            Square square = new Square(generateRandomBigDecimal(2, 10));
-            Rectangle rectangle = new Rectangle(generateRandomBigDecimal(2, 10), generateRandomBigDecimal(2, 10));
+            Circle circle = new Circle(generateRandomBigDecimal());
+            Square square = new Square(generateRandomBigDecimal());
+            Rectangle rectangle = new Rectangle(generateRandomBigDecimal(), generateRandomBigDecimal());
             repository.saveAll(List.of(circle, square, rectangle));
         }
     }
 
-    private static BigDecimal generateRandomBigDecimal(int scale, int precision) {
+    private static BigDecimal generateRandomBigDecimal() {
         Random random = new Random();
-        return new BigDecimal(random.nextDouble() * precision)
-                .setScale(scale, RoundingMode.HALF_UP);
+        return BigDecimal.valueOf(random.nextDouble() * 10)
+                .setScale(2, RoundingMode.HALF_UP);
     }
 }
 

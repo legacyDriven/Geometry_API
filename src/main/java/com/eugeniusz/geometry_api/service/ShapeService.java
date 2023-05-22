@@ -1,6 +1,10 @@
 package com.eugeniusz.geometry_api.service;
 
 import com.eugeniusz.geometry_api.api.ShapePageRequest;
+import com.eugeniusz.geometry_api.api.exceptions.ShapeNotFoundException;
+import com.eugeniusz.geometry_api.dto.ShapeCreateRequest;
+import com.eugeniusz.geometry_api.factory.ShapeCreator;
+import com.eugeniusz.geometry_api.factory.ShapeFactory;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,15 +19,17 @@ public class ShapeService {
 
     ShapeRepository repository;
 
-    public Shape save(Shape shape) {
-        return null;
+    public Shape save(ShapeCreateRequest request) {
+        return repository.save(ShapeFactory.createShape(request));
     }
 
     public Page<Shape> getAllBy(ShapePageRequest request) {
         return null;
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws ShapeNotFoundException {
+        if(!repository.existsById(id))
+            throw new ShapeNotFoundException(id);
         repository.deleteById(id);
     }
 }
