@@ -1,4 +1,4 @@
-package com.eugeniusz.geometry_api.factory;
+package com.eugeniusz.geometry_api.factory.create;
 
 import com.eugeniusz.geometry_api.dto.post.CircleCreateRequest;
 import com.eugeniusz.geometry_api.dto.post.RectangleCreateRequest;

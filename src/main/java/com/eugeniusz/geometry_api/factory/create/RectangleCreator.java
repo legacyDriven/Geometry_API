@@ -1,11 +1,11 @@
-package com.eugeniusz.geometry_api.factory;
+package com.eugeniusz.geometry_api.factory.create;
 
 import com.eugeniusz.geometry_api.dto.post.RectangleCreateRequest;
 import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
 import com.eugeniusz.geometry_api.model.shape.Rectangle;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 
-public class RectangleCreator implements ShapeCreator  {
+public class RectangleCreator implements ShapeCreator {
 
     @Override
     public Shape createShape(ShapeCreateRequest request) {

@@ -3,7 +3,7 @@ package com.eugeniusz.geometry_api.service;
 import com.eugeniusz.geometry_api.api.ShapePageRequest;
 import com.eugeniusz.geometry_api.api.exceptions.ShapeNotFoundException;
 import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
-import com.eugeniusz.geometry_api.factory.ShapeFactory;
+import com.eugeniusz.geometry_api.factory.create.ShapeFactory;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +25,8 @@ public class ShapeService {
     public Page<Shape> getAllBy(ShapePageRequest request) {
         return null;
     }
+
+
 
     public void deleteById(Long id) throws ShapeNotFoundException {
         if(!repository.existsById(id))

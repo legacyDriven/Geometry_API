@@ -8,6 +8,10 @@ spring:
       - classpath:properties/openApi.yml
       - classpath:properties/security.yml
 
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+
+
 
 logging:
   level:
