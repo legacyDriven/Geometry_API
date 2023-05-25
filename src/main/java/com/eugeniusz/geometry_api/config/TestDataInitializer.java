@@ -11,10 +11,9 @@ import org.springframework.context.annotation.Profile;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.List;
 import java.util.Random;
 
-@Profile("!dev")
+@Profile("dev")
 @Configuration
 public class TestDataInitializer implements CommandLineRunner {
 
@@ -35,7 +34,10 @@ public class TestDataInitializer implements CommandLineRunner {
             Circle circle = new Circle(generateRandomBigDecimal());
             Square square = new Square(generateRandomBigDecimal());
             Rectangle rectangle = new Rectangle(generateRandomBigDecimal(), generateRandomBigDecimal());
-            repository.saveAll(List.of(circle, square, rectangle));
+            repository.save(circle);
+            repository.save(square);
+            repository.save(rectangle);
+            //repository.saveAll(List.of(circle, square, rectangle));
         }
     }
 

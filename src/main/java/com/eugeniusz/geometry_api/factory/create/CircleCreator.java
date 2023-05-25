@@ -11,4 +11,12 @@ public class CircleCreator implements ShapeCreator {
         CircleCreateRequest circleRequest = (CircleCreateRequest) request;
         return new Circle(circleRequest.getRadius());
     }
+
+    @Override
+    public Shape updateShape(ShapeCreateRequest request, Shape shape) {
+        CircleCreateRequest circleRequest = (CircleCreateRequest) request;
+        Circle circle = (Circle) shape;
+        circle.setRadius(circleRequest.getRadius());
+        return circle;
+    }
 }

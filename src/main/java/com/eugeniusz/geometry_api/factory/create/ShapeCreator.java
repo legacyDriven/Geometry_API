@@ -5,4 +5,6 @@ import com.eugeniusz.geometry_api.model.shape.Shape;
 
 public interface ShapeCreator {
     Shape createShape(ShapeCreateRequest request);
+
+    Shape updateShape(ShapeCreateRequest request, Shape shape);
 }

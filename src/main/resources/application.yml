@@ -17,8 +17,10 @@ logging:
   level:
     org:
       springframework:
-        web=DEBUG: INFO
-        security=DEBUG: INFO
+        web: DEBUG
+        security: INFO
+        data: INFO
+        boot: INFO
 server.port: 8888
 
 

@@ -27,5 +27,14 @@ public class ShapeFactory {
             throw new IllegalArgumentException("Unsupported shape type");
         }
     }
+
+    public static Shape updateShape(ShapeCreateRequest request, Shape shape) {
+        ShapeCreator creator = creators.get(request.getClass());
+        if (creator != null) {
+            return creator.updateShape(request, shape);
+        } else {
+            throw new IllegalArgumentException("Unsupported shape type");
+        }
+    }
 }
 

@@ -13,4 +13,12 @@ public class RectangleCreator implements ShapeCreator {
         return new Rectangle(rectangleRequest.getLength(), rectangleRequest.getWidth());
     }
 
+    @Override
+    public Shape updateShape(ShapeCreateRequest request, Shape shape) {
+        RectangleCreateRequest rectangleRequest = (RectangleCreateRequest) request;
+        Rectangle rectangle = (Rectangle) shape;
+        rectangle.setLength(rectangleRequest.getLength());
+        rectangle.setWidth(rectangleRequest.getWidth());
+        return rectangle;
+    }
 }
