@@ -1,8 +1,11 @@
 package com.eugeniusz.geometry_api.dto.search.filters;
 
+import com.eugeniusz.geometry_api.dto.validators.EnumNamePattern;
 import com.eugeniusz.geometry_api.model.shape.ShapeType;
-import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,53 +13,48 @@ import org.springframework.data.domain.Sort;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Data
-@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
-public class ShapeRequestFilter {
-
-    ShapeType type;
-
-    BigDecimal areaFrom;
-
-    BigDecimal areaTo;
-
-    BigDecimal perimeterFrom;
-
-    BigDecimal perimeterTo;
-
-    BigDecimal radiusFrom;
-
-    BigDecimal radiusTo;
-
-    BigDecimal sideFrom;
-
-    BigDecimal sideTo;
-
-    BigDecimal widthFrom;
-
-    BigDecimal widthTo;
-
-    BigDecimal lengthFrom;
-
-    BigDecimal lengthTo;
-
-    Integer version;
-
-    String createdBy;
-
-    LocalDateTime createdAt;
-
-    LocalDateTime lastModifiedAt;
-
-    String lastModifiedBy;
-
-    int pageNumber;
-
-    int pageSize;
-
-    String sortBy;
-
-    String sortDirection;
+public record ShapeRequestFilter (
+        @NotNull(message = "Shape type cannot be null")
+        @EnumNamePattern(regexp = "CIRCLE|SQUARE|RECTANGLE")
+        ShapeType type,
+        @PositiveOrZero(message = "Area value cannot be negative")
+        BigDecimal areaFrom,
+        @Positive(message = "Area upper bound value cannot be negative or zero")
+        BigDecimal areaTo,
+        @PositiveOrZero(message = "Perimeter value cannot be negative")
+        BigDecimal perimeterFrom,
+        @Positive(message = "Perimeter upper bound value cannot be negative or zero")
+        BigDecimal perimeterTo,
+        @Positive(message = "Radius value cannot be negative or zero")
+        BigDecimal radiusFrom,
+        @Positive(message = "Radius upper bound value cannot be negative or zero")
+        BigDecimal radiusTo,
+        @Positive(message = "Side value cannot be negative or zero")
+        BigDecimal sideFrom,
+        @Positive(message = "Side upper bound value cannot be negative or zero")
+        BigDecimal sideTo,
+        @Positive(message = "Width value cannot be negative or zero")
+        BigDecimal widthFrom,
+        @Positive(message = "Width upper bound value cannot be negative or zero")
+        BigDecimal widthTo,
+        @Positive(message = "Length value cannot be negative or zero")
+        BigDecimal lengthFrom,
+        @Positive(message = "Length upper bound value cannot be negative or zero")
+        BigDecimal lengthTo,
+        @PositiveOrZero(message = "Version value cannot be negative")
+        Integer version,
+        String createdBy,
+        @PastOrPresent(message = "Created at date cannot be in the future")
+        LocalDateTime createdAt,
+        @PastOrPresent(message = "Last modified at date cannot be in the future")
+        LocalDateTime lastModifiedAt,
+        String lastModifiedBy,
+        @PositiveOrZero(message = "Page number value cannot be negative")
+        int pageNumber,
+        @Positive(message = "Page size value cannot be negative or zero")
+        int pageSize,
+        String sortBy,
+        String sortDirection) {
 
     public Pageable toPageRequest() {
         int page = Math.max(pageNumber, 0);

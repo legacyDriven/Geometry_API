@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
-public class CircleFilter implements ICircleFilter{
+public class CircleFilter {
 
     BigDecimal radiusFrom;
 
