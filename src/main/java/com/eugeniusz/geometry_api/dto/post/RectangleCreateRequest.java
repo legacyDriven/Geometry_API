@@ -1,5 +1,6 @@
 package com.eugeniusz.geometry_api.dto.post;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -15,9 +16,11 @@ import java.math.BigDecimal;
 public class RectangleCreateRequest extends ShapeCreateRequest {
     @NotNull
     @Positive
+    @Schema(example = "1.0", description = "Length of rectangle")
     BigDecimal length;
 
     @NotNull
     @Positive
+    @Schema(example = "1.0", description = "Width of rectangle")
     BigDecimal width;
 }

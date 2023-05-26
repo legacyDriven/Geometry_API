@@ -2,6 +2,8 @@ spring:
   security:
     jwt:
       secret: "${my.jwt.secret}"
+
+
       expiration-time: 86400000
 
 my:

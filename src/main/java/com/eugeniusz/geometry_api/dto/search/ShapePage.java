@@ -9,15 +9,14 @@ public record ShapePage(
         @Nullable @Schema(example = "id", description = "Sort by field") String sortBy,
         @Nullable @Schema(example = "asc", allowableValues = {"asc", "desc"}, description = "Sort direction") String sortDirection
 ) {
-    public static ShapePage defaultShapePageOf() {
-        return new ShapePage(0, 10, "id", "asc");
-    }
-
-    public static ShapePage defaultBasicShapePageOf(int pageNumber, int pageSize) {
-        return new ShapePage(pageNumber, pageSize, "id", "asc");
-    }
 
     public static ShapePage defaultShapePageOf(int pageNumber, int pageSize, String sortBy, String sortDirection) {
+        if(pageNumber < 0) pageNumber = 0;
+        if(pageSize < 1) pageSize = 1;
+        if(sortBy == null || sortBy.isBlank()) sortBy = "id";
+        if(sortDirection == null || sortDirection.isBlank()) sortDirection = "asc";
         return new ShapePage(pageNumber, pageSize, sortBy, sortDirection);
     }
+
+
 }

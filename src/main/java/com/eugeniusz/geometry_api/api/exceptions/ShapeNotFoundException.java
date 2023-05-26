@@ -2,6 +2,6 @@ package com.eugeniusz.geometry_api.api.exceptions;
 
 public class ShapeNotFoundException extends RuntimeException{
     public ShapeNotFoundException(Long id) {
-        super("Could not find shape " + id);
+        super(String.format("Shape with id: %d does not exist.", id));
     }
 }

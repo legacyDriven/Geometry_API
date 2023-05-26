@@ -1,8 +1,8 @@
 package com.eugeniusz.geometry_api.service;
 
-import com.eugeniusz.geometry_api.api.ShapePageRequest;
 import com.eugeniusz.geometry_api.api.exceptions.ShapeNotFoundException;
 import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
+import com.eugeniusz.geometry_api.dto.search.filters.ShapeRequestFilter;
 import com.eugeniusz.geometry_api.factory.create.ShapeFactory;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;
@@ -20,18 +20,20 @@ public class ShapeService {
 
     ShapeRepository repository;
 
+    @Transactional
     public Shape save(ShapeCreateRequest request) {
         return repository.save(ShapeFactory.createShape(request));
     }
 
-    public Page<Shape> getAllBy(ShapePageRequest request) {
-//        Pageable pageable = request.getShapePage();//getPage().toPageable();
-        return null;
-
+    public Page<Shape> getAll(ShapeRequestFilter request) {
+        Pageable page = request.toPageRequest();
+        return repository.findAll(page);
     }
 
 
 
+
+    @Transactional
     public void deleteById(Long id) throws ShapeNotFoundException {
         if(!repository.existsById(id))
             throw new ShapeNotFoundException(id);
@@ -46,5 +48,9 @@ public class ShapeService {
             return ShapeFactory.updateShape(
                     request,
                     repository.findById(id).orElseThrow(() -> new ShapeNotFoundException(id)));
+    }
+
+    public Shape getById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new ShapeNotFoundException(id));
     }
 }

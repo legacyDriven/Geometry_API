@@ -1,6 +1,7 @@
 package com.eugeniusz.geometry_api.api;
 
 import com.eugeniusz.geometry_api.dto.post.ShapeCreateRequest;
+import com.eugeniusz.geometry_api.dto.search.filters.ShapeRequestFilter;
 import com.eugeniusz.geometry_api.model.shape.Shape;
 import com.eugeniusz.geometry_api.service.ShapeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.*;
@@ -23,15 +25,22 @@ public class ShapeEndpoint {
 
     ShapeService shapeService;
 
+    @Operation(summary = "Retrieve shape from database by id")
+    @GetMapping("/{id}")
+    @ResponseStatus(OK)
+    Shape getShapeById(@PathVariable Long id) {
+        return shapeService.getById(id);
+    }
+
     @Operation(summary = "Retrieve shapes from database by criteria")
     @GetMapping
     @ResponseStatus(PARTIAL_CONTENT)
-    Page<Shape> getAll(@RequestBody ShapePageRequest request) {
-        return shapeService.getAllBy(request);
+    Page<Shape> getAll(@ModelAttribute ShapeRequestFilter request) {
+        return shapeService.getAll(request);
     }
 
     @Operation(summary = "Persist shape in database")
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     @ResponseStatus(CREATED)
     Shape createShape(@Valid @RequestBody ShapeCreateRequest request) {
         return shapeService.save(request);

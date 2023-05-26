@@ -1,10 +1,8 @@
 package com.eugeniusz.geometry_api;
 
-import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
