@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import static com.eugeniusz.geometry_api.api.exceptions.ServerErrorDetails.serverErrorDetailsOf;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
-@Profile("prod")
+@Profile("!dev")
 @RestControllerAdvice
 @Order(Integer.MAX_VALUE)
 public class GenericExceptionHandler {

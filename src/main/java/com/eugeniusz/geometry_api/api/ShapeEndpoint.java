@@ -35,7 +35,7 @@ public class ShapeEndpoint {
     @Operation(summary = "Retrieve shapes from database by criteria")
     @GetMapping
     @ResponseStatus(PARTIAL_CONTENT)
-    Page<Shape> getAll(@ModelAttribute ShapeRequestFilter request) {
+    Page<? extends Shape> getAll(@ModelAttribute ShapeRequestFilter request) {
         return shapeService.getAll(request);
     }
 

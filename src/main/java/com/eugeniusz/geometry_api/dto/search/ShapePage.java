@@ -12,7 +12,7 @@ public record ShapePage(
 
     public static ShapePage defaultShapePageOf(int pageNumber, int pageSize, String sortBy, String sortDirection) {
         if(pageNumber < 0) pageNumber = 0;
-        if(pageSize < 1) pageSize = 1;
+        if(pageSize < 1) pageSize = 0;
         if(sortBy == null || sortBy.isBlank()) sortBy = "id";
         if(sortDirection == null || sortDirection.isBlank()) sortDirection = "asc";
         return new ShapePage(pageNumber, pageSize, sortBy, sortDirection);

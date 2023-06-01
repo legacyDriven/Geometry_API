@@ -6,5 +6,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CircleRepository extends JpaRepository<Circle, Long>, JpaSpecificationExecutor<Circle> {
+public interface CircleRepository
+        extends JpaRepository<Circle, Long>,
+        JpaSpecificationExecutor<Circle> {
+
 }

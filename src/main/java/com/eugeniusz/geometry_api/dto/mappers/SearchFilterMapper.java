@@ -3,12 +3,12 @@ package com.eugeniusz.geometry_api.dto.mappers;
 import com.eugeniusz.geometry_api.dto.search.filters.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")//"spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface SearchFilterMapper {
 
-    SearchFilterMapper INSTANCE = Mappers.getMapper(SearchFilterMapper.class);
+//    SearchFilterMapper INSTANCE = Mappers.getMapper(SearchFilterMapper.class);
+
 
     @Mapping(target = "radiusFrom", source = "radiusFrom")
     @Mapping(target = "radiusTo", source = "radiusTo")
@@ -16,7 +16,6 @@ public interface SearchFilterMapper {
     @Mapping(target = "areaTo", source = "areaTo")
     @Mapping(target = "perimeterFrom", source = "perimeterFrom")
     @Mapping(target = "perimeterTo", source = "perimeterTo")
-    @Mapping(target = "version", source = "version")
     @Mapping(target = "createdBy", source = "createdBy")
     @Mapping(target = "lastModifiedBy", source = "lastModifiedBy")
     @Mapping(target = "createdAt", source = "createdAt")
@@ -31,7 +30,6 @@ public interface SearchFilterMapper {
     @Mapping(target = "areaTo", source = "areaTo")
     @Mapping(target = "perimeterFrom", source = "perimeterFrom")
     @Mapping(target = "perimeterTo", source = "perimeterTo")
-    @Mapping(target = "version", source = "version")
     @Mapping(target = "createdBy", source = "createdBy")
     @Mapping(target = "lastModifiedBy", source = "lastModifiedBy")
     @Mapping(target = "createdAt", source = "createdAt")
@@ -44,7 +42,6 @@ public interface SearchFilterMapper {
     @Mapping(target = "areaTo", source = "areaTo")
     @Mapping(target = "perimeterFrom", source = "perimeterFrom")
     @Mapping(target = "perimeterTo", source = "perimeterTo")
-    @Mapping(target = "version", source = "version")
     @Mapping(target = "createdBy", source = "createdBy")
     @Mapping(target = "lastModifiedBy", source = "lastModifiedBy")
     @Mapping(target = "createdAt", source = "createdAt")
@@ -55,7 +52,6 @@ public interface SearchFilterMapper {
     @Mapping(target = "areaTo", source = "areaTo")
     @Mapping(target = "perimeterFrom", source = "perimeterFrom")
     @Mapping(target = "perimeterTo", source = "perimeterTo")
-    @Mapping(target = "version", source = "version")
     @Mapping(target = "createdBy", source = "createdBy")
     @Mapping(target = "lastModifiedBy", source = "lastModifiedBy")
     @Mapping(target = "createdAt", source = "createdAt")

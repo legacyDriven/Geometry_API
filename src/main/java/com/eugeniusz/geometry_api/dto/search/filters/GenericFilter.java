@@ -9,7 +9,6 @@ public record GenericFilter(
         BigDecimal areaTo,
         BigDecimal perimeterFrom,
         BigDecimal perimeterTo,
-        Integer version,
         String createdBy,
         String lastModifiedBy,
         LocalDateTime createdAt,

@@ -5,6 +5,7 @@ import com.eugeniusz.geometry_api.model.shape.Rectangle;
 import com.eugeniusz.geometry_api.model.shape.Square;
 import com.eugeniusz.geometry_api.repository.ShapeRepository;
 import com.github.javafaker.Faker;
+import lombok.experimental.FieldDefaults;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -15,11 +16,12 @@ import java.util.Random;
 
 @Profile("dev")
 @Configuration
+@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
 public class TestDataInitializer implements CommandLineRunner {
 
-    private final ShapeRepository repository;
+    ShapeRepository repository;
 
-    Random random = new Random();
+    static Random random = new Random();
 
     public TestDataInitializer(ShapeRepository entityRepository) {
         this.repository = entityRepository;
@@ -42,7 +44,6 @@ public class TestDataInitializer implements CommandLineRunner {
     }
 
     private static BigDecimal generateRandomBigDecimal() {
-        Random random = new Random();
         return BigDecimal.valueOf(random.nextDouble() * 10)
                 .setScale(2, RoundingMode.HALF_UP);
     }

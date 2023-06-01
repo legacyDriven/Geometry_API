@@ -41,8 +41,6 @@ public record ShapeRequestFilter (
         BigDecimal lengthFrom,
         @Positive(message = "Length upper bound value cannot be negative or zero")
         BigDecimal lengthTo,
-        @PositiveOrZero(message = "Version value cannot be negative")
-        Integer version,
         String createdBy,
         @PastOrPresent(message = "Created at date cannot be in the future")
         LocalDateTime createdAt,
@@ -66,5 +64,4 @@ public record ShapeRequestFilter (
         }
         return PageRequest.of(page, size, Sort.by(direction, sortField));
     }
-
 }

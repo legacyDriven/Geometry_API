@@ -1,9 +1,16 @@
 package com.eugeniusz.geometry_api.dto.search.filters;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class RectangleFilter {
+@Getter
+@Builder
+@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
+public class RectangleFilter {//implements ShapeRequest {
 
     BigDecimal lengthFrom;
 
@@ -20,8 +27,6 @@ public class RectangleFilter {
     BigDecimal perimeterFrom;
 
     BigDecimal perimeterTo;
-
-    Integer version;
 
     String createdBy;
 

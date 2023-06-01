@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
-public class CircleFilter {
+public class CircleFilter {// implements ShapeRequest{
 
     BigDecimal radiusFrom;
 
@@ -23,8 +23,6 @@ public class CircleFilter {
     BigDecimal perimeterFrom;
 
     BigDecimal perimeterTo;
-
-    Integer version;
 
     String createdBy;
 
